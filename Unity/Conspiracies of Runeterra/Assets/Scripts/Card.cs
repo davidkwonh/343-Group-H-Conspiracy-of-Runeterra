@@ -22,4 +22,10 @@ public class Card : MonoBehaviour
     {
         
     }
+
+    // 
+    void changeSprite(Sprite newSprite)
+    {
+        //mySprite = newSprite;
+    }
 }

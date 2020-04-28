@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RegionCard : Card
+public class RegionCard : ChampionCard
 {
     // Public Variables
     public Sprite[] regions;
