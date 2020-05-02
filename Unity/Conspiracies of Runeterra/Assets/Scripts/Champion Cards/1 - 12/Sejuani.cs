@@ -8,7 +8,7 @@ public class Sejuani : ChampionCard
     void Start()
     {
         setCard(2);
-        changeSprite(champions[getCardID() - 1]); // Subtract one because sprites start at 0 but card ID's start at 1.
+        changeSprite(myParent.champions[getCardID() - 1]); // Subtract one because sprites start at 0 but card ID's start at 1.
         power = 2;
         transferPower = 0;
         resistance = 5;

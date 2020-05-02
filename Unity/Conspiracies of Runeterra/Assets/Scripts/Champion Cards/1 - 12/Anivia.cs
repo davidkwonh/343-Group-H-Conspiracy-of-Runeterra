@@ -8,7 +8,7 @@ public class Anivia : ChampionCard
     void Start()
     {
         setCard(6);
-        changeSprite(champions[getCardID() - 1]); // Subtract one because sprites start at 0 but card ID's start at 1.
+        changeSprite(myParent.champions[getCardID() - 1]); // Subtract one because sprites start at 0 but card ID's start at 1.
         power = 5;
         transferPower = 0;
         resistance = 4;

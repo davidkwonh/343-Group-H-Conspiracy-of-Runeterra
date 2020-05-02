@@ -2,10 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RegionCard : ChampionCard
+public class RegionCard : Card
 {
     // Public Variables
     public Sprite[] regions;
+
+    // Protected Variables
+    protected RegionCard myParent;
+    protected int power;
+    protected int transferPower;
+    protected int income;
+    protected int gold;
 
     // Start is called before the first frame update
     /*void Start()
@@ -18,4 +25,14 @@ public class RegionCard : ChampionCard
     {
         
     }*/
+
+    public void setParent(RegionCard parent)
+    {
+        myParent = parent;
+    }
+    // Add gold from income.
+    public void gainIncome()
+    {
+        gold += income;
+    }
 }

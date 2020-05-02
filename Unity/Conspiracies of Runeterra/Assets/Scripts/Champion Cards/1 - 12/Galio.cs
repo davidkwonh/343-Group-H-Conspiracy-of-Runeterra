@@ -8,7 +8,7 @@ public class Galio : ChampionCard
     void Start()
     {
         setCard(9);
-        changeSprite(champions[getCardID() - 1]); // Subtract one because sprites start at 0 but card ID's start at 1.
+        changeSprite(myParent.champions[getCardID() - 1]); // Subtract one because sprites start at 0 but card ID's start at 1.
         power = 6;
         transferPower = 4;
         resistance = 5;

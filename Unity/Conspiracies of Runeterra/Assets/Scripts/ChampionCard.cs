@@ -9,15 +9,13 @@ public class ChampionCard : Card
     public Sprite[] champions;
 
     // Protected Variables
+    protected ChampionCard myParent;
     protected int power;
     protected int transferPower;
     protected int resistance;
     protected int income;
     protected int gold;
     protected List<String> alignments = new List<String>();
-
-    // Private Variable
-    Card myParent;
 
     // Start is called before the first frame update
     void Start()
@@ -31,15 +29,10 @@ public class ChampionCard : Card
         
     }*/
 
-    public void setParent(Card parent)
+    public void setParent(ChampionCard parent)
     {
         myParent = parent;
     }
-    public Card getParent()
-    {
-        return myParent;
-    }
-
     // Add gold from income.
     public void gainIncome()
     {

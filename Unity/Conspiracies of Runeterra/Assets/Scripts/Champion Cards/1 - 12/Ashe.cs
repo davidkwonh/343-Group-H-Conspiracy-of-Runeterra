@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Ashe : ChampionCard
 {
-    // Private Variables
-    ChampionCard myParent;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -25,9 +22,4 @@ public class Ashe : ChampionCard
     {
         
     }*/
-
-    public void setParent(ChampionCard parent)
-    {
-        myParent = parent;
-    }
 }
