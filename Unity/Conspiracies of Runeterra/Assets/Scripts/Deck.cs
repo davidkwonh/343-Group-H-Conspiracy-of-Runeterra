@@ -17,11 +17,11 @@ public class Deck : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Region Cards
+        // Create Region Cards
         populateRegions();
-        // Champion Cards
+        // Create Champion Cards
         populateChampions();
-        // Spell Cards
+        // Create Spell Cards
         populateSpells();
     }
 
@@ -38,7 +38,7 @@ public class Deck : MonoBehaviour
     {
         regionCards = new List<GameObject>();
         GameObject instance;
-
+        
         // 1 Iron
         instance = Instantiate(regionCard, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
         instance.AddComponent<Iron>();
@@ -153,8 +153,58 @@ public class Deck : MonoBehaviour
 
         // 01 Ignite
         instance = Instantiate(spellCard, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-        //instance.AddComponent<Ignite>();
-        //instance.GetComponent<Ignite>().setParent(instance.GetComponent<SpellCard>());
+        instance.AddComponent<Ignite>();
+        instance.GetComponent<Ignite>().setParent(instance.GetComponent<SpellCard>());
+        spellCards.Add(instance);
+        // 02 Smite
+        instance = Instantiate(spellCard, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        instance.AddComponent<Smite>();
+        instance.GetComponent<Smite>().setParent(instance.GetComponent<SpellCard>());
+        spellCards.Add(instance);
+        // 03 Clarity
+        instance = Instantiate(spellCard, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        instance.AddComponent<Clarity>();
+        instance.GetComponent<Clarity>().setParent(instance.GetComponent<SpellCard>());
+        spellCards.Add(instance);
+        // 04 Cleanse
+        instance = Instantiate(spellCard, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        instance.AddComponent<Cleanse>();
+        instance.GetComponent<Cleanse>().setParent(instance.GetComponent<SpellCard>());
+        spellCards.Add(instance);
+        // 05 Ghost
+        instance = Instantiate(spellCard, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        instance.AddComponent<Ghost>();
+        instance.GetComponent<Ghost>().setParent(instance.GetComponent<SpellCard>());
+        spellCards.Add(instance);
+        // 06 Heal
+        instance = Instantiate(spellCard, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        instance.AddComponent<Heal>();
+        instance.GetComponent<Heal>().setParent(instance.GetComponent<SpellCard>());
+        spellCards.Add(instance);
+        // 07 Barrier
+        instance = Instantiate(spellCard, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        instance.AddComponent<Barrier>();
+        instance.GetComponent<Barrier>().setParent(instance.GetComponent<SpellCard>());
+        spellCards.Add(instance);
+        // 08 Exhaust
+        instance = Instantiate(spellCard, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        instance.AddComponent<Exhaust>();
+        instance.GetComponent<Exhaust>().setParent(instance.GetComponent<SpellCard>());
+        spellCards.Add(instance);
+        // 09 Mark & Dash
+        instance = Instantiate(spellCard, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        instance.AddComponent<MarkDash>();
+        instance.GetComponent<MarkDash>().setParent(instance.GetComponent<SpellCard>());
+        spellCards.Add(instance);
+        // 10 Teleport
+        instance = Instantiate(spellCard, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        instance.AddComponent<Teleport>();
+        instance.GetComponent<Teleport>().setParent(instance.GetComponent<SpellCard>());
+        spellCards.Add(instance);
+        // 11 Flash
+        instance = Instantiate(spellCard, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        instance.AddComponent<Flash>();
+        instance.GetComponent<Flash>().setParent(instance.GetComponent<SpellCard>());
         spellCards.Add(instance);
     }
 }

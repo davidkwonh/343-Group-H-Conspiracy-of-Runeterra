@@ -86,6 +86,17 @@
     <Compile Include="Assets\Scripts\Region Cards\Platinum.cs" />
     <Compile Include="Assets\Scripts\Region Cards\Silver.cs" />
     <Compile Include="Assets\Scripts\RegionCard.cs" />
+    <Compile Include="Assets\Scripts\Spell Cards\Barrier.cs" />
+    <Compile Include="Assets\Scripts\Spell Cards\Clarity.cs" />
+    <Compile Include="Assets\Scripts\Spell Cards\Cleanse.cs" />
+    <Compile Include="Assets\Scripts\Spell Cards\Exhaust.cs" />
+    <Compile Include="Assets\Scripts\Spell Cards\Flash.cs" />
+    <Compile Include="Assets\Scripts\Spell Cards\Ghost.cs" />
+    <Compile Include="Assets\Scripts\Spell Cards\Heal.cs" />
+    <Compile Include="Assets\Scripts\Spell Cards\Ignite.cs" />
+    <Compile Include="Assets\Scripts\Spell Cards\MarkDash.cs" />
+    <Compile Include="Assets\Scripts\Spell Cards\Smite.cs" />
+    <Compile Include="Assets\Scripts\Spell Cards\Teleport.cs" />
     <Compile Include="Assets\Scripts\SpellCard.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Andrew/Documents/GitHub/ILLUMINATI-343-GH/Unity/Conspiracies of Runeterra/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

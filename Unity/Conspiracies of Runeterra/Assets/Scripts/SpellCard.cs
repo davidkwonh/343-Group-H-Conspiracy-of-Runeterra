@@ -7,6 +7,10 @@ public class SpellCard : Card
     // Public Variables
     public Sprite[] spells;
 
+    // Protected Variables
+    protected SpellCard myParent;
+    protected bool inDeck;
+
     /*// Start is called before the first frame update
     void Start()
     {
@@ -18,4 +22,8 @@ public class SpellCard : Card
     {
         
     }*/
+    public void setParent(SpellCard parent)
+    {
+        myParent = parent;
+    }
 }
