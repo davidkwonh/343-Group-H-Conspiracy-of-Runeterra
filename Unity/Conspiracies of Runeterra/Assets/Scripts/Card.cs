@@ -24,7 +24,7 @@ public class Card : MonoBehaviour
     }
 
     // 
-    void changeSprite(Sprite newSprite)
+    public void changeSprite(Sprite newSprite)
     {
         mySprite.sprite = newSprite;
     }
@@ -33,5 +33,9 @@ public class Card : MonoBehaviour
     public void setCard(int ID)
     {
         cardID = ID;
+    }
+    public int getCardID()
+    {
+        return cardID;
     }
 }
