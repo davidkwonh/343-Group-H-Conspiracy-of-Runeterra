@@ -14,7 +14,7 @@ public class Card : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mySprite = GetComponent<SpriteRenderer>();
+        
     }
 
     // Update is called once per frame
@@ -26,6 +26,7 @@ public class Card : MonoBehaviour
     // 
     public void changeSprite(Sprite newSprite)
     {
+        mySprite = GetComponent<SpriteRenderer>();
         mySprite.sprite = newSprite;
     }
 

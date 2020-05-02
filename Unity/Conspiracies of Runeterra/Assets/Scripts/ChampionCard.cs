@@ -14,7 +14,10 @@ public class ChampionCard : Card
     protected int resistance;
     protected int income;
     protected int gold;
-    protected List<String> alignments;
+    protected List<String> alignments = new List<String>();
+
+    // Private Variable
+    Card myParent;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +30,15 @@ public class ChampionCard : Card
     {
         
     }*/
+
+    public void setParent(Card parent)
+    {
+        myParent = parent;
+    }
+    public Card getParent()
+    {
+        return myParent;
+    }
 
     // Add gold from income.
     public void gainIncome()
