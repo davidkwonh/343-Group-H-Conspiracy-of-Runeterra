@@ -33,4 +33,48 @@ public class ChampionCard : Card
     {
         gold += income;
     }
+
+    // Check if same alignment.
+    public bool isSame(String align)
+    {
+        if (align == "Shadow Spirit")
+            return false;
+
+        return alignments.Contains(align);
+    }
+
+    // Check if opposite alignment.
+    public bool isOpposite(String align)
+    {
+        // Demacian vs. Ionian
+        if (align == "Demacian")
+            return alignments.Contains("Ionian");
+        else if (align == "Ionian")
+            return alignments.Contains("Demacian");
+
+        // Freljordian vs. Monster
+        if (align == "Freljordian")
+            return alignments.Contains("Monster");
+        else if (align == "Monster")
+            return alignments.Contains("Freljordian");
+
+        // Noxian vs. Zaunist
+        if (align == "Noxian")
+            return alignments.Contains("Zaunist");
+        else if (align == "Zaunist")
+            return alignments.Contains("Noxian");
+
+        // Yordle vs. Shuriman
+        if (align == "Yordle")
+            return alignments.Contains("Shuriman");
+        else if (align == "Shuriman")
+            return alignments.Contains("Yordle");
+
+        // Shadow Spirit vs. Shadow Spirit
+        if (align == "Shadow Spirit")
+            return alignments.Contains("Shadow Spirit");
+
+        // Void no opposite.
+        return false;
+    }
 }

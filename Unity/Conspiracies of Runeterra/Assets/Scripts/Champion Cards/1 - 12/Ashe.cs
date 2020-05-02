@@ -2,17 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ashe : MonoBehaviour
+public class Ashe : ChampionCard
 {
     // Start is called before the first frame update
     void Start()
     {
-        
+        setCard(7);
+        changeSprite(champions[getCardID() - 1]); // Subtract one because sprites start at 0 but card ID's start at 1.
+        power = 6;
+        transferPower = 0;
+        resistance = 5;
+        income = 3;
+        gold = 0;
+        alignments.Add("Freljordian");
     }
 
-    // Update is called once per frame
+    /*// Update is called once per frame
     void Update()
     {
         
-    }
+    }*/
 }
