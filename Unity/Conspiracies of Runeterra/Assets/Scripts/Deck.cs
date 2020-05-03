@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Deck : MonoBehaviour
 {
+    public static Deck deck = null;
+
     // Public Variables
     public GameObject champCard;
     public GameObject regionCard;
@@ -13,7 +15,15 @@ public class Deck : MonoBehaviour
     private List<GameObject> regionCards;
     private List<GameObject> championCards;
     private List<GameObject> spellCards;
+    private List<GameObject> shuffledDeck;
 
+    private void Awake()
+    {
+        if (deck == null)
+            deck = this;
+        else if (deck != this)
+            Destroy(gameObject);
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +51,34 @@ public class Deck : MonoBehaviour
             Destroy(regionCards[0]);
             regionCards.RemoveAt(0);
         }
+
+        // Drawn 4 Champions.
+        for (int i = 0; i < 4; i++)
+        {
+            UncontrolledArea.uncontrolled.myHolders[i].GetComponent<CardHolder>().holdCard(championCards[i]);
+            championCards.RemoveAt(i);
+        }
+
+        // Create deck of remaining Champions & Spells.
+        shuffledDeck = new List<GameObject>();
+        while (championCards.Count > 0)
+        {
+            shuffledDeck.Add(championCards[0]);
+            championCards.RemoveAt(0);
+        }
+        while (spellCards.Count > 0)
+        {
+            shuffledDeck.Add(spellCards[0]);
+            spellCards.RemoveAt(0);
+        }
+        // Shuffle the deck.
+        randomizeList(shuffledDeck);
+
+        // Roll for First Player.
+        PlayerController.playerControl.rollForFirst();
+
+        // Begin Game.
+        StartCoroutine(PlayerController.playerControl.sequenceOfPlay());
     }
 
     // Update is called once per frame
@@ -49,9 +87,24 @@ public class Deck : MonoBehaviour
         
     }
 
-    // Pass/Get Region Cards
-    // Pass/Get Champion Cards
-    // Pass/Get Spell Cards
+    //
+    public void drawCard()
+    {
+        if (shuffledDeck[0].GetComponent<SpellCard>() == null)
+        {
+            // Draw card
+            int lastHolder = UncontrolledArea.uncontrolled.myHolders.Count - 1;
+            UncontrolledArea.uncontrolled.myHolders[lastHolder].GetComponent<CardHolder>().holdCard(shuffledDeck[0]);
+            shuffledDeck.RemoveAt(0);
+        }
+        else
+        {
+            Destroy(shuffledDeck[0]);
+            shuffledDeck.RemoveAt(0);
+            drawCard();
+        }
+    }
+
     void randomizeList(List<GameObject> list)
     {
         for (int i = 0; i < list.Count; i++)

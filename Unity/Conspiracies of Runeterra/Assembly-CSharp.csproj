@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Card.cs" />
+    <Compile Include="Assets\Scripts\CardHolder.cs" />
     <Compile Include="Assets\Scripts\Champion Cards\1 - 12\Anivia.cs" />
     <Compile Include="Assets\Scripts\Champion Cards\1 - 12\Ashe.cs" />
     <Compile Include="Assets\Scripts\Champion Cards\1 - 12\Cassiopeia.cs" />
@@ -77,10 +78,8 @@
     <Compile Include="Assets\Scripts\Champion Cards\1 - 12\Ziggs.cs" />
     <Compile Include="Assets\Scripts\ChampionCard.cs" />
     <Compile Include="Assets\Scripts\Deck.cs" />
+    <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\Players\Player.cs" />
-    <Compile Include="Assets\Scripts\Players\Player1.cs" />
-    <Compile Include="Assets\Scripts\Players\Player2.cs" />
     <Compile Include="Assets\Scripts\Region Cards\Bronze.cs" />
     <Compile Include="Assets\Scripts\Region Cards\Challenger.cs" />
     <Compile Include="Assets\Scripts\Region Cards\Diamond.cs" />
@@ -102,6 +101,7 @@
     <Compile Include="Assets\Scripts\Spell Cards\Smite.cs" />
     <Compile Include="Assets\Scripts\Spell Cards\Teleport.cs" />
     <Compile Include="Assets\Scripts\SpellCard.cs" />
+    <Compile Include="Assets\Scripts\UncontrolledArea.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Andrew/Documents/GitHub/ILLUMINATI-343-GH/Unity/Conspiracies of Runeterra/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

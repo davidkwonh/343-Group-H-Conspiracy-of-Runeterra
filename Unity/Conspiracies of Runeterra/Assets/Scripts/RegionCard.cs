@@ -9,6 +9,7 @@ public class RegionCard : Card
 
     // Protected Variables
     protected RegionCard myParent;
+    protected RegionCard myChild;
     protected int power;
     protected int transferPower;
     protected int income;
@@ -29,10 +30,15 @@ public class RegionCard : Card
     public void setParent(RegionCard parent)
     {
         myParent = parent;
+        parent.myChild = this;
     }
     // Add gold from income.
     public void gainIncome()
     {
         gold += income;
+    }
+    public RegionCard getChild()
+    {
+        return myChild;
     }
 }

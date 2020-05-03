@@ -8,10 +8,14 @@ public class PlayerController : MonoBehaviour
     public static PlayerController playerControl = null;
 
     //
+    public GameObject camera;
     public GameObject player;
+    public List<GameObject> myPlayers;
 
     // Private Variables
-    public List<GameObject> myPlayers;
+    GameObject currentPlayer;
+    GameObject nextPlayer;
+    bool activeTurn = false;
 
     //
     private void Awake()
@@ -32,7 +36,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown("return"))
+        {
+            if (activeTurn == false)
+                endTurn();
+        }
     }
 
     //
@@ -42,11 +50,58 @@ public class PlayerController : MonoBehaviour
         GameObject instance;
 
         instance = Instantiate(player, new Vector3(0, -10, 0), Quaternion.identity) as GameObject;
-        instance.AddComponent<Player1>();
         myPlayers.Add(instance);
 
         instance = Instantiate(player, new Vector3(0, 10, 0), Quaternion.identity) as GameObject;
-        instance.AddComponent<Player2>();
         myPlayers.Add(instance);
+    }
+    public void rollForFirst()
+    {
+        int randomIndex = Random.Range(0, myPlayers.Count);
+        myPlayers[randomIndex].GetComponent<Player>().setFirstPlayer();
+        currentPlayer = myPlayers[randomIndex];
+    }
+    public IEnumerator sequenceOfPlay()
+    {
+        activeTurn = true;
+        yield return new WaitForSeconds(1f);
+
+        // Determine Next Player.
+        if (myPlayers.IndexOf(currentPlayer) + 1 == myPlayers.Count)
+            nextPlayer = myPlayers[0];
+        else
+            nextPlayer = myPlayers[myPlayers.IndexOf(currentPlayer) + 1];
+
+        // Collect Income
+        currentPlayer.GetComponent<Player>().collectIncome();
+        // Draw a card.
+
+        // Take 2 Actions.
+
+        // Take any free actions.
+
+        // Transfer Money.
+
+        // Take special-power actions.
+
+        // Add targets.
+        while (UncontrolledArea.uncontrolled.myHolders.Count < 2)
+        {
+            UncontrolledArea.uncontrolled.addHolder();
+            Deck.deck.drawCard();
+        }
+        // End Turn.
+        activeTurn = false;
+    }
+
+    //
+    private void endTurn()
+    {
+        // Check if anyone won.
+
+        // Go to next player.
+        camera.transform.Rotate(Vector3.forward * 180);
+        currentPlayer = nextPlayer;
+        StartCoroutine(sequenceOfPlay());
     }
 }
