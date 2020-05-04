@@ -73,6 +73,7 @@ public class Deck : MonoBehaviour
         }
         // Shuffle the deck.
         randomizeList(shuffledDeck);
+        hideCards();
 
         // Roll for First Player.
         PlayerController.playerControl.rollForFirst();
@@ -86,14 +87,20 @@ public class Deck : MonoBehaviour
     {
         
     }
-
+    public GameObject drawCard()
+    {
+        GameObject temp = shuffledDeck[0];
+        shuffledDeck.RemoveAt(0);
+        return temp;
+    }
     //
-    public void drawCard()
+    public void addTarget()
     {
         if (shuffledDeck[0].GetComponent<SpellCard>() == null)
         {
             // Draw card
             int lastHolder = UncontrolledArea.uncontrolled.myHolders.Count - 1;
+            shuffledDeck[0].GetComponent<SpriteRenderer>().enabled = true;
             UncontrolledArea.uncontrolled.myHolders[lastHolder].GetComponent<CardHolder>().holdCard(shuffledDeck[0]);
             shuffledDeck.RemoveAt(0);
         }
@@ -101,10 +108,16 @@ public class Deck : MonoBehaviour
         {
             Destroy(shuffledDeck[0]);
             shuffledDeck.RemoveAt(0);
-            drawCard();
+            addTarget();
         }
     }
-
+    void hideCards()
+    {
+        for (int i = 0; i < shuffledDeck.Count; i++)
+        {
+            shuffledDeck[i].GetComponent<SpriteRenderer>().enabled = false;
+        }
+    }
     void randomizeList(List<GameObject> list)
     {
         for (int i = 0; i < list.Count; i++)

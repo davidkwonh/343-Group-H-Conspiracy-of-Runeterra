@@ -10,12 +10,16 @@ public class ChampionCard : Card
 
     // Protected Variables
     protected ChampionCard myParent;
+    protected ChampionCard myChild;
     protected int power;
     protected int transferPower;
     protected int resistance;
     protected int income;
     protected int gold;
     protected List<String> alignments = new List<String>();
+
+    protected bool attachLeft;
+    protected bool attachRight;
 
     // Start is called before the first frame update
     void Start()
@@ -28,10 +32,19 @@ public class ChampionCard : Card
     {
         
     }*/
+    public ChampionCard getChild()
+    {
+        return myChild;
+    }
+    public int getResistance()
+    {
+        return resistance;
+    }
 
     public void setParent(ChampionCard parent)
     {
         myParent = parent;
+        parent.myChild = this;
     }
     // Add gold from income.
     public void gainIncome()

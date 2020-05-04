@@ -13,6 +13,11 @@ public class Iron : RegionCard
         transferPower = 10;
         income = 9;
         gold = 9;
+
+        openArrowUp = true;
+        openArrowDown = true;
+        openArrowLeft = true;
+        openArrowRight = true;
     }
     /*
     // Update is called once per frame

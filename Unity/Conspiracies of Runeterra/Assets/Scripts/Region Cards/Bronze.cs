@@ -13,7 +13,12 @@ public class Bronze : RegionCard
         transferPower = 8;
         income = 9;
         gold = 9;
-    }
+
+        openArrowUp = true;
+        openArrowDown = true;
+        openArrowLeft = true;
+        openArrowRight = true;
+}
     /*
     // Update is called once per frame
     void Update()

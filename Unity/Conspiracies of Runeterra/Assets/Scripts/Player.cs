@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public GameObject holder;
     //
     private GameObject myRegion;
     private List<GameObject> myChamps = new List<GameObject>();
+    private List<GameObject> myChampHolders = new List<GameObject>();
+    private List<GameObject> mySpellHolders = new List<GameObject>();
     private bool isFirst;
     // Start is called before the first frame update
     void Start()
     {
         isFirst = false;
+        spawnHolders();
     }
 
     // Update is called once per frame
@@ -36,5 +40,119 @@ public class Player : MonoBehaviour
     public void collectIncome()
     {
         myRegion.GetComponent<RegionCard>().getChild().gainIncome();
+    }
+    public void drawCard()
+    {
+        GameObject card = Deck.deck.drawCard();
+        if (card.GetComponent<SpellCard>() != null)
+        {
+            card.GetComponent<SpriteRenderer>().enabled = true;
+            /*if (transform.rotation != Quaternion.identity)
+                card.transform.Rotate(Vector3.forward * 180);*/
+            if (mySpellHolders[0].GetComponent<CardHolder>().hasCard() == false)
+                mySpellHolders[0].GetComponent<CardHolder>().holdCard(card);
+            else
+            {
+                GameObject instance;
+                if (transform.rotation == Quaternion.identity)
+                    instance = Instantiate(holder, mySpellHolders[mySpellHolders.Count - 1].transform.position + new Vector3(0, -10, 0), Quaternion.identity) as GameObject;
+                else
+                    instance = Instantiate(holder, mySpellHolders[mySpellHolders.Count - 1].transform.position + new Vector3(0, 10, 0), Quaternion.identity) as GameObject;
+                mySpellHolders.Add(instance);
+                instance.GetComponent<CardHolder>().holdCard(card);
+            }
+        }
+        else
+        {
+            UncontrolledArea.uncontrolled.addHolder();
+            int lastHolder = UncontrolledArea.uncontrolled.myHolders.Count - 1;
+            card.GetComponent<SpriteRenderer>().enabled = true;
+            UncontrolledArea.uncontrolled.myHolders[lastHolder].GetComponent<CardHolder>().holdCard(card);
+        }
+    }
+
+    // Attack Action
+    public void attack()
+    {
+        if (myRegion.GetComponent<RegionCard>().getChild().getAttack())
+        {
+            UncontrolledArea.uncontrolled.spawnSelectBoxes();
+        }
+    }
+    public void attackToControl(GameObject card)
+    {
+        int targetResistance = card.GetComponent<ChampionCard>().getChild().getResistance();
+        int attackerPower = myRegion.GetComponent<RegionCard>().getChild().getPower();
+        int attackGoal = attackerPower - targetResistance;
+        int randomRoll = Random.Range(2, 13);
+        print(randomRoll + "<roll goal>" + attackGoal);
+
+        if (randomRoll <= attackGoal && randomRoll < 11)
+        {
+            GameObject instance;
+            // Success attack
+            if (myRegion.GetComponent<RegionCard>().getChild().openArrowRight)
+            {
+                // Create card holder.
+                instance = Instantiate(holder, transform.position + new Vector3(15, 0, 0), Quaternion.identity) as GameObject;
+                myRegion.GetComponent<RegionCard>().getChild().openArrowRight = false;
+            }
+            else if (myRegion.GetComponent<RegionCard>().getChild().openArrowUp)
+            {
+                instance = Instantiate(holder, transform.position + new Vector3(0, 10, 0), Quaternion.identity) as GameObject;
+                myRegion.GetComponent<RegionCard>().getChild().openArrowUp = false;
+            }
+            else if (myRegion.GetComponent<RegionCard>().getChild().openArrowDown)
+            {
+                instance = Instantiate(holder, transform.position + new Vector3(0, -10, 0), Quaternion.identity) as GameObject;
+                myRegion.GetComponent<RegionCard>().getChild().openArrowDown = false;
+            }
+            else
+            {
+                instance = Instantiate(holder, transform.position + new Vector3(-15, 0, 0), Quaternion.identity) as GameObject;
+                myRegion.GetComponent<RegionCard>().getChild().openArrowLeft = false;
+            }
+
+            myChampHolders.Add(instance);
+            instance.GetComponent<CardHolder>().holdCard(card);
+            myChamps.Add(card);
+
+            // Update Uncontrolled Area
+            UncontrolledArea.uncontrolled.updateCards();
+        }
+        else
+        {
+            // Fail
+            UncontrolledArea.uncontrolled.updateCards();
+            UncontrolledArea.uncontrolled.addHolder();
+            int lastHolder = UncontrolledArea.uncontrolled.myHolders.Count - 1;
+            UncontrolledArea.uncontrolled.myHolders[lastHolder].GetComponent<CardHolder>().holdCard(card);
+        }
+
+        PlayerController.playerControl.attacked = true;
+    }
+
+    void spawnHolders()
+    {
+        GameObject instance;
+
+        /*instance = Instantiate(holder, transform.position + new Vector3(0, 10, 0), Quaternion.identity) as GameObject;
+        myChampHolders.Add(instance);
+
+        instance = Instantiate(holder, transform.position + new Vector3(15, 0, 0), Quaternion.identity) as GameObject;
+        myChampHolders.Add(instance);
+
+        instance = Instantiate(holder, transform.position + new Vector3(0, -10, 0), Quaternion.identity) as GameObject;
+        myChampHolders.Add(instance);
+
+        instance = Instantiate(holder, transform.position + new Vector3(-15, 0, 0), Quaternion.identity) as GameObject;
+        myChampHolders.Add(instance);*/
+
+        // Spell Holder
+        if (transform.rotation == Quaternion.identity)
+            instance = Instantiate(holder, transform.position + new Vector3(0, -10, 0), Quaternion.identity) as GameObject;
+        else
+            instance = Instantiate(holder, transform.position + new Vector3(0, 10, 0), Quaternion.identity) as GameObject;
+        mySpellHolders.Add(instance);
     }
 }

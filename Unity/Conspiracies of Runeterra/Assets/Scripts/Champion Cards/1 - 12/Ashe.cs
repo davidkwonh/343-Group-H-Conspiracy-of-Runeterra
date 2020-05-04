@@ -15,11 +15,8 @@ public class Ashe : ChampionCard
         income = 3;
         gold = 0;
         alignments.Add("Freljordian");
-    }
 
-    /*// Update is called once per frame
-    void Update()
-    {
-        
-    }*/
+        attachLeft = false;
+        attachRight = true;
+    }
 }

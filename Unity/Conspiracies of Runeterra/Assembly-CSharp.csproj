@@ -89,6 +89,7 @@
     <Compile Include="Assets\Scripts\Region Cards\Platinum.cs" />
     <Compile Include="Assets\Scripts\Region Cards\Silver.cs" />
     <Compile Include="Assets\Scripts\RegionCard.cs" />
+    <Compile Include="Assets\Scripts\SelectBox.cs" />
     <Compile Include="Assets\Scripts\Spell Cards\Barrier.cs" />
     <Compile Include="Assets\Scripts\Spell Cards\Clarity.cs" />
     <Compile Include="Assets\Scripts\Spell Cards\Cleanse.cs" />

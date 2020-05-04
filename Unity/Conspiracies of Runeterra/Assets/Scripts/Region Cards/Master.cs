@@ -13,6 +13,11 @@ public class Master : RegionCard
         transferPower = 8;
         income = 8;
         gold = 8;
+
+        openArrowUp = true;
+        openArrowDown = true;
+        openArrowLeft = true;
+        openArrowRight = true;
     }
     /*
     // Update is called once per frame

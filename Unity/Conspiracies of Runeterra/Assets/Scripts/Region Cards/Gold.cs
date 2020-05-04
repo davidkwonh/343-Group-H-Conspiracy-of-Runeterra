@@ -13,6 +13,11 @@ public class Gold : RegionCard
         transferPower = 7;
         income = 12;
         gold = 12;
+
+        openArrowUp = true;
+        openArrowDown = true;
+        openArrowLeft = true;
+        openArrowRight = true;
     }
     /*
     // Update is called once per frame

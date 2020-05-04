@@ -13,6 +13,11 @@ public class Diamond : RegionCard
         transferPower = 9;
         income = 7;
         gold = 7;
+
+        openArrowUp = true;
+        openArrowDown = true;
+        openArrowLeft = true;
+        openArrowRight = true;
     }
     /*
     // Update is called once per frame

@@ -11,11 +11,14 @@ public class PlayerController : MonoBehaviour
     public GameObject camera;
     public GameObject player;
     public List<GameObject> myPlayers;
+    public bool attacked = false;
 
     // Private Variables
     GameObject currentPlayer;
     GameObject nextPlayer;
     bool activeTurn = false;
+    bool rotated = false;
+    
 
     //
     private void Awake()
@@ -41,6 +44,34 @@ public class PlayerController : MonoBehaviour
             if (activeTurn == false)
                 endTurn();
         }
+        if (Input.GetKey("right"))
+        {
+            if (rotated)
+                camera.transform.position += new Vector3((float)-0.2, 0, 0);
+            else
+                camera.transform.position += new Vector3((float)0.2, 0, 0);
+        }
+        if (Input.GetKey("left"))
+        {
+            if (rotated)
+                camera.transform.position += new Vector3((float)0.2, 0, 0);
+            else
+                camera.transform.position += new Vector3((float)-0.2, 0, 0);
+        }
+        if (Input.GetKey("up"))
+        {
+            if (rotated)
+                camera.transform.position += new Vector3(0, (float)-0.2, 0);
+            else
+                camera.transform.position += new Vector3(0, (float)0.2, 0);
+        }
+        if (Input.GetKey("down"))
+        {
+            if (rotated)
+                camera.transform.position += new Vector3(0, (float)0.2, 0);
+            else
+                camera.transform.position += new Vector3(0, (float)-0.2, 0);
+        }
     }
 
     //
@@ -49,10 +80,10 @@ public class PlayerController : MonoBehaviour
         myPlayers = new List<GameObject>();
         GameObject instance;
 
-        instance = Instantiate(player, new Vector3(0, -10, 0), Quaternion.identity) as GameObject;
+        instance = Instantiate(player, new Vector3(0, -20, 0), Quaternion.identity) as GameObject;
         myPlayers.Add(instance);
 
-        instance = Instantiate(player, new Vector3(0, 10, 0), Quaternion.identity) as GameObject;
+        instance = Instantiate(player, new Vector3(0, 20, 0), Quaternion.Euler(180,0,0)) as GameObject;
         myPlayers.Add(instance);
     }
     public void rollForFirst()
@@ -60,10 +91,18 @@ public class PlayerController : MonoBehaviour
         int randomIndex = Random.Range(0, myPlayers.Count);
         myPlayers[randomIndex].GetComponent<Player>().setFirstPlayer();
         currentPlayer = myPlayers[randomIndex];
+        if (randomIndex == 1)
+        {
+            camera.transform.Rotate(Vector3.forward * 180);
+            UncontrolledArea.uncontrolled.rotateCards();
+            rotated = true;
+        } 
     }
     public IEnumerator sequenceOfPlay()
     {
         activeTurn = true;
+        camera.transform.position = currentPlayer.transform.position + new Vector3(0,0,-10);
+        //camera.GetComponent<Camera>().orthographicSize = 15; //
         yield return new WaitForSeconds(1f);
 
         // Determine Next Player.
@@ -75,9 +114,13 @@ public class PlayerController : MonoBehaviour
         // Collect Income
         currentPlayer.GetComponent<Player>().collectIncome();
         // Draw a card.
-
+        currentPlayer.GetComponent<Player>().drawCard();
         // Take 2 Actions.
-
+        currentPlayer.GetComponent<Player>().attack();
+        while (attacked == false)
+        {
+            yield return new WaitForSeconds(10f);
+        }
         // Take any free actions.
 
         // Transfer Money.
@@ -88,7 +131,7 @@ public class PlayerController : MonoBehaviour
         while (UncontrolledArea.uncontrolled.myHolders.Count < 2)
         {
             UncontrolledArea.uncontrolled.addHolder();
-            Deck.deck.drawCard();
+            Deck.deck.addTarget();
         }
         // End Turn.
         activeTurn = false;
@@ -101,7 +144,14 @@ public class PlayerController : MonoBehaviour
 
         // Go to next player.
         camera.transform.Rotate(Vector3.forward * 180);
+        UncontrolledArea.uncontrolled.rotateCards();
+        rotated = !(rotated);
         currentPlayer = nextPlayer;
         StartCoroutine(sequenceOfPlay());
+    }
+
+    public void attackToControl(GameObject card)
+    {
+        currentPlayer.GetComponent<Player>().attackToControl(card);
     }
 }

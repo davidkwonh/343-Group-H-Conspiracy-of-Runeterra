@@ -23,4 +23,15 @@ public class CardHolder : MonoBehaviour
         myCard = card;
         myCard.transform.position = transform.position;
     }
+    public bool hasCard()
+    {
+        if (myCard = null)
+            return false;
+
+        return true;
+    }
+    public GameObject getCard()
+    {
+        return myCard;
+    }
 }

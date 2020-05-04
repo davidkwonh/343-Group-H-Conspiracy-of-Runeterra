@@ -29,6 +29,13 @@ public class Card : MonoBehaviour
         mySprite = GetComponent<SpriteRenderer>();
         mySprite.sprite = newSprite;
     }
+    public void spriteVisible()
+    {
+        if (mySprite.enabled == true)
+            mySprite.enabled = false;
+        else
+            mySprite.enabled = true;
+    }
 
     //
     public void setCard(int ID)
