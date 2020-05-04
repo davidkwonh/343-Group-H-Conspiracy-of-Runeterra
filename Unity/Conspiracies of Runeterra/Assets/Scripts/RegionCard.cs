@@ -8,11 +8,6 @@ public class RegionCard : Card
     public Sprite[] regions;
     public GameObject holder;
 
-    public bool openArrowUp;
-    public bool openArrowDown;
-    public bool openArrowLeft;
-    public bool openArrowRight;
-
     // Protected Variables
     protected RegionCard myParent;
     protected RegionCard myChild;
@@ -20,11 +15,16 @@ public class RegionCard : Card
     protected int transferPower;
     protected int income;
     protected int gold;
-    protected List<GameObject> openArrows = new List<GameObject>();
-    protected List<GameObject> usedArrows = new List<GameObject>();
+    protected List<GameObject> openArrows;
+    protected List<GameObject> usedArrows;
 
     protected bool canAttack = true;
 
+    //
+    void Start()
+    {
+        
+    }
     //
     public void setParent(RegionCard parent)
     {
@@ -52,19 +52,41 @@ public class RegionCard : Card
     // Spawn Card Holders for each open arrow on the card.
     protected void spawnArrows()
     {
+        openArrows = new List<GameObject>();
+        usedArrows = new List<GameObject>();
         GameObject instance;
 
         // Top Arrow
-        instance = Instantiate(holder, transform.position + new Vector3(15, 0, 0), Quaternion.identity) as GameObject;
+        instance = Instantiate(myParent.holder, transform.position + new Vector3(15, 0, 0), Quaternion.identity) as GameObject;
         openArrows.Add(instance);
         // Right Arrow
-        instance = Instantiate(holder, transform.position + new Vector3(0, 10, 0), Quaternion.identity) as GameObject;
+        instance = Instantiate(myParent.holder, transform.position + new Vector3(0, 10, 0), Quaternion.identity) as GameObject;
         openArrows.Add(instance);
         // Bottom Arrow
-        instance = Instantiate(holder, transform.position + new Vector3(0, -10, 0), Quaternion.identity) as GameObject;
+        instance = Instantiate(myParent.holder, transform.position + new Vector3(0, -10, 0), Quaternion.identity) as GameObject;
         openArrows.Add(instance);
         // Left Arrow
-        instance = Instantiate(holder, transform.position + new Vector3(-15, 0, 0), Quaternion.identity) as GameObject;
+        instance = Instantiate(myParent.holder, transform.position + new Vector3(-15, 0, 0), Quaternion.identity) as GameObject;
         openArrows.Add(instance);
+    }
+
+    //
+    public GameObject getOpenArrow()
+    {
+        if (openArrows.Count == 0)
+            return null;
+
+        for (int i = 0; i < openArrows.Count; i++)
+        {
+            if (openArrows[i].GetComponent<CardHolder>().hasCard() == false)
+                return openArrows[i];
+        }
+
+        return null;
+    }
+    public void fillArrow()
+    {
+        usedArrows.Add(openArrows[0]);
+        openArrows.RemoveAt(0);
     }
 }

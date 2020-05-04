@@ -54,6 +54,7 @@ MonoBehaviour:
   - {fileID: -2105356851741097129, guid: c94b470221cd33240b473fec74fe9336, type: 3}
   - {fileID: 3178524139615234089, guid: c94b470221cd33240b473fec74fe9336, type: 3}
   - {fileID: -378725136024436599, guid: c94b470221cd33240b473fec74fe9336, type: 3}
+  holder: {fileID: 2519232415888274935, guid: dcf2a309513b74c46869ba8640629e45, type: 3}
 --- !u!212 &9137106589190899342
 SpriteRenderer:
   m_ObjectHideFlags: 0

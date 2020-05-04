@@ -25,7 +25,7 @@ public class CardHolder : MonoBehaviour
     }
     public bool hasCard()
     {
-        if (myCard = null)
+        if (myCard == null)
             return false;
 
         return true;

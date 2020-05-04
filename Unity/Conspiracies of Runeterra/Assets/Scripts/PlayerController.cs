@@ -119,7 +119,7 @@ public class PlayerController : MonoBehaviour
         currentPlayer.GetComponent<Player>().attack();
         while (attacked == false)
         {
-            yield return new WaitForSeconds(10f);
+            yield return null;
         }
         // Take any free actions.
 
@@ -143,6 +143,7 @@ public class PlayerController : MonoBehaviour
         // Check if anyone won.
 
         // Go to next player.
+        attacked = false;
         camera.transform.Rotate(Vector3.forward * 180);
         UncontrolledArea.uncontrolled.rotateCards();
         rotated = !(rotated);
