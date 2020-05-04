@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public GameObject player;
     public List<GameObject> myPlayers;
     public bool attacked = false;
+    public bool addingGold = false;
 
     // Private Variables
     GameObject currentPlayer;
@@ -44,6 +45,8 @@ public class PlayerController : MonoBehaviour
         {
             if (activeTurn == false)
                 endTurn();
+            if (addingGold)
+                addingGold = false;
         }
         if (Input.GetKey("right"))
         {
@@ -72,6 +75,13 @@ public class PlayerController : MonoBehaviour
                 camera.transform.position += new Vector3(0, (float)0.2, 0);
             else
                 camera.transform.position += new Vector3(0, (float)-0.2, 0);
+        }
+
+        // Adding Gold
+        if (Input.GetKeyDown("a"))
+        {
+            if (addingGold)
+                currentPlayer.GetComponent<Player>().getRegion().GetComponent<RegionCard>().getChild().spendGold();
         }
     }
 
@@ -156,7 +166,8 @@ public class PlayerController : MonoBehaviour
 
     public void attackToControl(GameObject card)
     {
-        currentPlayer.GetComponent<Player>().attackToControl(card);
+        addingGold = true;
+        StartCoroutine(currentPlayer.GetComponent<Player>().attackToControl(card));
     }
 
     private void endGame(int player)

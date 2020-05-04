@@ -7,6 +7,7 @@ public class ChampionCard : Card
 {
     // Public Variables
     public Sprite[] champions;
+    public GameObject treasury;
 
     // Protected Variables
     protected ChampionCard myParent;
@@ -16,6 +17,7 @@ public class ChampionCard : Card
     protected int resistance;
     protected int income;
     protected int gold;
+    protected GameObject myTreasury;
     protected List<String> alignments = new List<String>();
 
     protected bool attachLeft;
@@ -45,11 +47,20 @@ public class ChampionCard : Card
     {
         myParent = parent;
         parent.myChild = this;
+
+        GameObject instance;
+        instance = Instantiate(parent.treasury, transform.position, transform.rotation) as GameObject;
+        instance.GetComponent<Treasury>().setParent(this);
+        myTreasury = instance;
     }
     // Add gold from income.
     public void gainIncome()
     {
         gold += income;
+    }
+    public int getGold()
+    {
+        return gold;
     }
 
     // Check if same alignment.

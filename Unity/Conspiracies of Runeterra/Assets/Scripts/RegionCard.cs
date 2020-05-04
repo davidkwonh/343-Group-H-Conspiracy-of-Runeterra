@@ -7,6 +7,7 @@ public class RegionCard : Card
     // Public Variables
     public Sprite[] regions;
     public GameObject holder;
+    public GameObject treasury;
 
     // Protected Variables
     protected RegionCard myParent;
@@ -15,6 +16,7 @@ public class RegionCard : Card
     protected int transferPower;
     protected int income;
     protected int gold;
+    protected GameObject myTreasury;
     protected List<GameObject> openArrows;
     protected List<GameObject> usedArrows;
 
@@ -36,6 +38,15 @@ public class RegionCard : Card
     {
         gold += income;
     }
+    public int getGold()
+    {
+        return gold;
+    }
+    public void spendGold()
+    {
+        gold -= 1;
+        power += 1;
+    }
     public RegionCard getChild()
     {
         return myChild;
@@ -47,6 +58,10 @@ public class RegionCard : Card
     public int getPower()
     {
         return power;
+    }
+    public void resetPower(int original)
+    {
+        power = original;
     }
 
     // Spawn Card Holders for each open arrow on the card.
@@ -68,6 +83,11 @@ public class RegionCard : Card
         // Left Arrow
         instance = Instantiate(myParent.holder, transform.position + new Vector3(-15, 0, 0), Quaternion.identity) as GameObject;
         openArrows.Add(instance);
+
+        // Treasury
+        instance = Instantiate(myParent.treasury, transform.position, transform.rotation) as GameObject;
+        instance.GetComponent<Treasury>().setParent(this);
+        myTreasury = instance;
     }
 
     //
@@ -81,7 +101,6 @@ public class RegionCard : Card
             if (openArrows[i].GetComponent<CardHolder>().hasCard() == false)
                 return openArrows[i];
         }
-
         return null;
     }
     public void fillArrow()

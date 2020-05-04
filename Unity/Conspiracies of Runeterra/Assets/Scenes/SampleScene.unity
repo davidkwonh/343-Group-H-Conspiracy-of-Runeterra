@@ -336,6 +336,7 @@ MonoBehaviour:
   camera: {fileID: 519420028}
   player: {fileID: 4935982818215908165, guid: dbcb676786d31c54cb8fd74f9f91c8b7, type: 3}
   myPlayers: []
+  attacked: 0
 --- !u!4 &658180614
 Transform:
   m_ObjectHideFlags: 0

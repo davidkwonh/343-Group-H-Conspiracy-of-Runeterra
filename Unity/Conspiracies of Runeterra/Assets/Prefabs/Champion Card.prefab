@@ -58,6 +58,8 @@ MonoBehaviour:
   - {fileID: 5723483474606548959, guid: 41320c4642164d34ab6a0840c73b749e, type: 3}
   - {fileID: -5478251188376325158, guid: 41320c4642164d34ab6a0840c73b749e, type: 3}
   - {fileID: 5383087453183672170, guid: 41320c4642164d34ab6a0840c73b749e, type: 3}
+  treasury: {fileID: 9086047144161495694, guid: 5d79b8601243e63419b14f17d3f199ed,
+    type: 3}
 --- !u!212 &7649614450608492268
 SpriteRenderer:
   m_ObjectHideFlags: 0

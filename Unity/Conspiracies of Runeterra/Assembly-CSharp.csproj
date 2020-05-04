@@ -102,6 +102,7 @@
     <Compile Include="Assets\Scripts\Spell Cards\Smite.cs" />
     <Compile Include="Assets\Scripts\Spell Cards\Teleport.cs" />
     <Compile Include="Assets\Scripts\SpellCard.cs" />
+    <Compile Include="Assets\Scripts\Treasury.cs" />
     <Compile Include="Assets\Scripts\UncontrolledArea.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Andrew/Documents/GitHub/ILLUMINATI-343-GH/Unity/Conspiracies of Runeterra/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

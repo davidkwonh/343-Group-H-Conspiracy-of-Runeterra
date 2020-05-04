@@ -40,6 +40,12 @@ public class Player : MonoBehaviour
     public void collectIncome()
     {
         myRegion.GetComponent<RegionCard>().getChild().gainIncome();
+        for (int i = 0; i < myChamps.Count; i++)
+            myChamps[i].GetComponent<ChampionCard>().getChild().gainIncome();
+    }
+    public GameObject getRegion()
+    {
+        return myRegion;
     }
     public void drawCard()
     {
@@ -81,8 +87,14 @@ public class Player : MonoBehaviour
             UncontrolledArea.uncontrolled.spawnSelectBoxes();
         }
     }
-    public void attackToControl(GameObject card)
+    public IEnumerator attackToControl(GameObject card)
     {
+        int originalPower = myRegion.GetComponent<RegionCard>().getChild().getPower();
+        while (PlayerController.playerControl.addingGold)
+        {
+            yield return null;
+        }
+
         int targetResistance = card.GetComponent<ChampionCard>().getChild().getResistance();
         int attackerPower = myRegion.GetComponent<RegionCard>().getChild().getPower();
         int attackGoal = attackerPower - targetResistance;
@@ -110,6 +122,7 @@ public class Player : MonoBehaviour
         }
 
         PlayerController.playerControl.attacked = true;
+        myRegion.GetComponent<RegionCard>().getChild().resetPower(originalPower);
     }
 
     void spawnHolders()
