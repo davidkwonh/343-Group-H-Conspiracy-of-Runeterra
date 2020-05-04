@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -141,7 +142,9 @@ public class PlayerController : MonoBehaviour
     private void endTurn()
     {
         // Check if anyone won.
-
+        for (int i = 0; i < myPlayers.Count; i++)
+            if (myPlayers[i].GetComponent<Player>().checkWin())
+                endGame(i + 1);
         // Go to next player.
         attacked = false;
         camera.transform.Rotate(Vector3.forward * 180);
@@ -154,5 +157,12 @@ public class PlayerController : MonoBehaviour
     public void attackToControl(GameObject card)
     {
         currentPlayer.GetComponent<Player>().attackToControl(card);
+    }
+
+    private void endGame(int player)
+    {
+        StopAllCoroutines();
+        print("Player " + player + " wins!");
+        SceneManager.LoadScene(0);
     }
 }

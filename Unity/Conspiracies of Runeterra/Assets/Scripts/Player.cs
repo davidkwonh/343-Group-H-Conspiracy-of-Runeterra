@@ -130,9 +130,17 @@ public class Player : MonoBehaviour
 
         // Spell Holder
         if (transform.rotation == Quaternion.identity)
-            instance = Instantiate(holder, transform.position + new Vector3(0, -10, 0), Quaternion.identity) as GameObject;
+            instance = Instantiate(holder, transform.position + new Vector3(15, -10, 0), Quaternion.identity) as GameObject;
         else
-            instance = Instantiate(holder, transform.position + new Vector3(0, 10, 0), Quaternion.identity) as GameObject;
+            instance = Instantiate(holder, transform.position + new Vector3(15, 10, 0), Quaternion.identity) as GameObject;
         mySpellHolders.Add(instance);
+    }
+
+    public bool checkWin()
+    {
+        if (myRegion.GetComponent<RegionCard>().getChild().getOpenArrow() == null)
+            return true;
+
+        return false;
     }
 }
