@@ -130,15 +130,6 @@ public class Player : MonoBehaviour
         GameObject instance;
 
         /*instance = Instantiate(holder, transform.position + new Vector3(0, 10, 0), Quaternion.identity) as GameObject;
-        myChampHolders.Add(instance);
-
-        instance = Instantiate(holder, transform.position + new Vector3(15, 0, 0), Quaternion.identity) as GameObject;
-        myChampHolders.Add(instance);
-
-        instance = Instantiate(holder, transform.position + new Vector3(0, -10, 0), Quaternion.identity) as GameObject;
-        myChampHolders.Add(instance);
-
-        instance = Instantiate(holder, transform.position + new Vector3(-15, 0, 0), Quaternion.identity) as GameObject;
         myChampHolders.Add(instance);*/
 
         // Spell Holder
@@ -153,6 +144,8 @@ public class Player : MonoBehaviour
     {
         // If (# players < 3)
         // Win by controlling 13 champions.
+
+        // Win when Region has 4 champions attached.
         if (myRegion.GetComponent<RegionCard>().getChild().getOpenArrow() == null)
             return true;
 
