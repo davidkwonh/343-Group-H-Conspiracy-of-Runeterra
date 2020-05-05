@@ -151,6 +151,8 @@ public class Player : MonoBehaviour
 
     public bool checkWin()
     {
+        // If (# players < 3)
+        // Win by controlling 13 champions.
         if (myRegion.GetComponent<RegionCard>().getChild().getOpenArrow() == null)
             return true;
 

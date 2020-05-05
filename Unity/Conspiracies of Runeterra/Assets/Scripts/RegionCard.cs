@@ -5,29 +5,35 @@ using UnityEngine;
 public class RegionCard : Card
 {
     // Public Variables
+
+    // All region card sprites.
     public Sprite[] regions;
+    // Card holder object.
     public GameObject holder;
+    // Treasury object.
     public GameObject treasury;
 
     // Protected Variables
+
+    // Links region classes and card objects.
     protected RegionCard myParent;
     protected RegionCard myChild;
+    // Card attributes.
     protected int power;
     protected int transferPower;
     protected int income;
     protected int gold;
+    //
+    protected bool canAttack = true;
+    // Treasury object to make gold visible to the player.
     protected GameObject myTreasury;
+    // Card holders for each arrow on the card.
     protected List<GameObject> openArrows;
     protected List<GameObject> usedArrows;
 
-    protected bool canAttack = true;
+    // Methods
 
-    //
-    void Start()
-    {
-        
-    }
-    //
+    // Link parent card object to this region object.
     public void setParent(RegionCard parent)
     {
         myParent = parent;
