@@ -17,10 +17,4 @@ public class Galio : ChampionCard
         alignments.Add("Demacian");
         alignments.Add("Zaunist");
     }
-
-    /*// Update is called once per frame
-    void Update()
-    {
-        
-    }*/
 }

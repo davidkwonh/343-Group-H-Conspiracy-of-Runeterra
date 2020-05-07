@@ -17,10 +17,4 @@ public class Cassiopeia : ChampionCard
         alignments.Add("Noxian");
         alignments.Add("Freljordian");
     }
-
-    /*// Update is called once per frame
-    void Update()
-    {
-        
-    }*/
 }

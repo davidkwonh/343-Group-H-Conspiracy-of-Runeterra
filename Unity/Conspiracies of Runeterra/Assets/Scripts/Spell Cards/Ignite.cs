@@ -11,10 +11,4 @@ public class Ignite : SpellCard
         changeSprite(myParent.spells[getCardID() - 1]); // Subtract one because sprites start at 0 but card ID's start at 1.
         inDeck = true;
     }
-    /*
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }*/
 }

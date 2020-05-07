@@ -17,10 +17,4 @@ public class Sivir : ChampionCard
         alignments.Add("Shuriman");
         alignments.Add("Zaunist");
     }
-
-    /*// Update is called once per frame
-    void Update()
-    {
-        
-    }*/
 }

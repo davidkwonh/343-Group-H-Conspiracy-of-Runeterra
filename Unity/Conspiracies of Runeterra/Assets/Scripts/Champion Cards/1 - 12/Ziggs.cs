@@ -17,10 +17,4 @@ public class Ziggs : ChampionCard
         alignments.Add("Monster");
         alignments.Add("Yordle");
     }
-
-    /*// Update is called once per frame
-    void Update()
-    {
-        
-    }*/
 }

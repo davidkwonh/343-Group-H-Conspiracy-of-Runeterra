@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Treasury : MonoBehaviour
 {
-    //
+    // Public variables
     public Sprite[] goldSprites;
-    //
+
+    // Private Variables
     RegionCard myRegion;
     ChampionCard myChamp;
     SpriteRenderer mySprite;
@@ -21,16 +22,19 @@ public class Treasury : MonoBehaviour
     void Update()
     {
         int gold = 0;
+        // Check if region or champion card.
         if (myRegion != null)
             gold = myRegion.getGold();
         if (myChamp != null)
             gold = myChamp.getGold();
 
+        // Update sprite.
         if (gold < 10)
             mySprite.sprite = goldSprites[gold];
         else
             mySprite.sprite = goldSprites[10];
 
+        // Update position and rotation.
         if (myRegion != null)
         {
             if (transform.position != myRegion.transform.position)
@@ -38,8 +42,6 @@ public class Treasury : MonoBehaviour
             if (transform.rotation != myRegion.transform.rotation)
                 transform.rotation = myRegion.transform.rotation;
         }
-            
-
         if (myChamp != null)
         {
             if (transform.position != myChamp.transform.position)
@@ -49,6 +51,7 @@ public class Treasury : MonoBehaviour
         }
     }
 
+    // Set parent to given card.
     public void setParent(RegionCard parent)
     {
         myRegion = parent;

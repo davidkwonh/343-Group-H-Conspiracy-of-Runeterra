@@ -11,17 +11,7 @@ public class SpellCard : Card
     protected SpellCard myParent;
     protected bool inDeck;
 
-    /*// Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }*/
+    // Set parent to given card.
     public void setParent(SpellCard parent)
     {
         myParent = parent;

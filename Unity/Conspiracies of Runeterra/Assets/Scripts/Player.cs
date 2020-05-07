@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    // Public Variables
     public GameObject holder;
-    //
+
+    // Private Variables
     private GameObject myRegion;
     private List<GameObject> myChamps = new List<GameObject>();
     private List<GameObject> myChampHolders = new List<GameObject>();
     private List<GameObject> mySpellHolders = new List<GameObject>();
     private bool isFirst;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,12 +21,7 @@ public class Player : MonoBehaviour
         spawnHolders();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    // Set region to given card.
     public void setRegion(GameObject card)
     {
         myRegion = card;
@@ -31,22 +29,26 @@ public class Player : MonoBehaviour
         if (this == PlayerController.playerControl.myPlayers[1].GetComponent<Player>())
             myRegion.transform.Rotate(Vector3.forward * 180);
     }
+    public GameObject getRegion()
+    {
+        return myRegion;
+    }
+
+    // Set as first player.
     public void setFirstPlayer()
     {
         isFirst = true;
     }
 
-    //
+    // Collect income for each controlled card.
     public void collectIncome()
     {
         myRegion.GetComponent<RegionCard>().getChild().gainIncome();
         for (int i = 0; i < myChamps.Count; i++)
             myChamps[i].GetComponent<ChampionCard>().getChild().gainIncome();
     }
-    public GameObject getRegion()
-    {
-        return myRegion;
-    }
+    
+    // Draw the top card of the deck.
     public void drawCard()
     {
         GameObject card = Deck.deck.drawCard();
@@ -79,7 +81,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    // Attack Action
+    // Begin Attack.
     public void attack()
     {
         if (myRegion.GetComponent<RegionCard>().getChild().getAttack())
@@ -87,6 +89,7 @@ public class Player : MonoBehaviour
             UncontrolledArea.uncontrolled.spawnSelectBoxes();
         }
     }
+    // Attack given card.
     public IEnumerator attackToControl(GameObject card)
     {
         int originalPower = myRegion.GetComponent<RegionCard>().getChild().getPower();
@@ -125,6 +128,7 @@ public class Player : MonoBehaviour
         myRegion.GetComponent<RegionCard>().getChild().resetPower(originalPower);
     }
 
+    // Create card holders.
     void spawnHolders()
     {
         GameObject instance;
@@ -140,6 +144,7 @@ public class Player : MonoBehaviour
         mySpellHolders.Add(instance);
     }
 
+    // Check for win conditions.
     public bool checkWin()
     {
         // If (# players < 3)

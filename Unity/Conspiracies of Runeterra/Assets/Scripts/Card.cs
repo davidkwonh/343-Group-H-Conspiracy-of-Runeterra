@@ -11,24 +11,13 @@ public class Card : MonoBehaviour
     private int cardID;
     private SpriteRenderer mySprite;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    // 
+    // Set sprite to given sprite.
     public void changeSprite(Sprite newSprite)
     {
         mySprite = GetComponent<SpriteRenderer>();
         mySprite.sprite = newSprite;
     }
+    // Change sprite visibility.
     public void spriteVisible()
     {
         if (mySprite.enabled == true)
@@ -37,7 +26,7 @@ public class Card : MonoBehaviour
             mySprite.enabled = true;
     }
 
-    //
+    // Set and Get Card ID
     public void setCard(int ID)
     {
         cardID = ID;

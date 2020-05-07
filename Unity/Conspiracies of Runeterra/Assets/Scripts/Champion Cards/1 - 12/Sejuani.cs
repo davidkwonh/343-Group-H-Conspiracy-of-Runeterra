@@ -17,12 +17,6 @@ public class Sejuani : ChampionCard
         alignments.Add("Freljordian");
     }
 
-    /*// Update is called once per frame
-    void Update()
-    {
-        
-    }*/
-
     // Special Ability
     // +2 on any attempt to destroy Trundle (ID 55).
 }

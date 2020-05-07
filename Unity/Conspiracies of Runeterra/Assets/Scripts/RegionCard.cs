@@ -50,8 +50,11 @@ public class RegionCard : Card
     }
     public void spendGold()
     {
-        gold -= 1;
-        power += 1;
+        if (gold != 0)
+        {
+            gold -= 1;
+            power += 1;
+        }
     }
     public RegionCard getChild()
     {

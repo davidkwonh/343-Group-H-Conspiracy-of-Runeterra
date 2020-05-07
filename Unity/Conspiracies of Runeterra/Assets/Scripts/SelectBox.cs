@@ -4,24 +4,16 @@ using UnityEngine;
 
 public class SelectBox : MonoBehaviour
 {
-    //
+    // Private Variables
     GameObject myCard;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    // Select card on mouse click.
     private void OnMouseUp()
     {
         UncontrolledArea.uncontrolled.selectCard(myCard);
     }
+
+    // Set card to given card.
     public void setCard(GameObject card)
     {
         myCard = card;

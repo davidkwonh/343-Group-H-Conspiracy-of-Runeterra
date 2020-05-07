@@ -17,10 +17,4 @@ public class Veigar : ChampionCard
         alignments.Add("Yordle");
         alignments.Add("Noxian");
     }
-
-    /*// Update is called once per frame
-    void Update()
-    {
-        
-    }*/
 }

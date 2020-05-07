@@ -17,10 +17,4 @@ public class Singed : ChampionCard
         alignments.Add("Zaunist");
         alignments.Add("Shuriman");
     }
-
-    /*// Update is called once per frame
-    void Update()
-    {
-        
-    }*/
 }

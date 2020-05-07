@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class UncontrolledArea : MonoBehaviour
 {
+    // Global Variables
     public static UncontrolledArea uncontrolled = null;
-    //
+
+    // Public Variables
     public GameObject holder;
     public GameObject select;
     public List<GameObject> myHolders;
     public List<GameObject> mySelects;
 
-    //
+    // Create and enforce singleton.
     private void Awake()
     {
         if (uncontrolled == null)
@@ -21,18 +23,8 @@ public class UncontrolledArea : MonoBehaviour
 
         spawnHolders();
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    // Create initial card holders.
     void spawnHolders()
     {
         myHolders = new List<GameObject>();
@@ -47,8 +39,7 @@ public class UncontrolledArea : MonoBehaviour
         instance = Instantiate(holder, transform.position + new Vector3(15, -5, 0), Quaternion.identity) as GameObject;
         myHolders.Add(instance);
     }
-
-    //
+    // Create new card holder.
     public void addHolder()
     {
         GameObject instance;
@@ -64,12 +55,15 @@ public class UncontrolledArea : MonoBehaviour
         instance = Instantiate(holder, newPostition, Quaternion.identity) as GameObject;
         myHolders.Add(instance);
     }
+
+    // Rotate held cards.
     public void rotateCards()
     {
         for (int i = 0; i < myHolders.Count; i++)
             myHolders[i].GetComponent<CardHolder>().getCard().transform.Rotate(Vector3.forward * 180);
     }
 
+    // Create selection box for each card holder.
     public void spawnSelectBoxes()
     {
         GameObject instance;
@@ -80,6 +74,8 @@ public class UncontrolledArea : MonoBehaviour
             mySelects.Add(instance);
         }
     }
+
+    // Pass selected card to player controller, and destroy selection boxes.
     public void selectCard(GameObject card)
     {
         while (mySelects.Count > 0)
@@ -92,6 +88,7 @@ public class UncontrolledArea : MonoBehaviour
         PlayerController.playerControl.attackToControl(card.GetComponent<CardHolder>().getCard());
     }
 
+    // Update card positions after attack.
     public void updateCards()
     {
         List<GameObject> temp = new List<GameObject>();

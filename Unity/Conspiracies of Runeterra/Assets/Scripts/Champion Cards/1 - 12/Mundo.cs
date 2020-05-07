@@ -19,12 +19,6 @@ public class Mundo : ChampionCard
         alignments.Add("Void");
     }
 
-    /*// Update is called once per frame
-    void Update()
-    {
-        
-    }*/
-
     // Special Ability
     // +3 on any attempt to destroy any champion.
 }

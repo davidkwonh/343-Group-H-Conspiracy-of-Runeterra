@@ -4,25 +4,16 @@ using UnityEngine;
 
 public class CardHolder : MonoBehaviour
 {
-    //
+    // Private Variables
     private GameObject myCard;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    // Hold given card.
     public void holdCard(GameObject card)
     {
         myCard = card;
         myCard.transform.position = transform.position;
     }
+    // Returns true if holding a card.
     public bool hasCard()
     {
         if (myCard == null)
@@ -30,6 +21,7 @@ public class CardHolder : MonoBehaviour
 
         return true;
     }
+    // Returns held card.
     public GameObject getCard()
     {
         return myCard;

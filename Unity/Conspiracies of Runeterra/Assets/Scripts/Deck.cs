@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Deck : MonoBehaviour
 {
+    // Global Variables
     public static Deck deck = null;
 
     // Public Variables
@@ -17,6 +18,7 @@ public class Deck : MonoBehaviour
     private List<GameObject> spellCards;
     private List<GameObject> shuffledDeck;
 
+    // Create and enforce singleton.
     private void Awake()
     {
         if (deck == null)
@@ -82,18 +84,15 @@ public class Deck : MonoBehaviour
         StartCoroutine(PlayerController.playerControl.sequenceOfPlay());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    // Pass top card of the deck.
     public GameObject drawCard()
     {
         GameObject temp = shuffledDeck[0];
         shuffledDeck.RemoveAt(0);
         return temp;
     }
-    //
+
+    // Add cards to the uncontrolled area.
     public void addTarget()
     {
         if (shuffledDeck[0].GetComponent<SpellCard>() == null)
@@ -111,6 +110,8 @@ public class Deck : MonoBehaviour
             addTarget();
         }
     }
+
+    // Hide card sprites.
     void hideCards()
     {
         for (int i = 0; i < shuffledDeck.Count; i++)
@@ -118,6 +119,8 @@ public class Deck : MonoBehaviour
             shuffledDeck[i].GetComponent<SpriteRenderer>().enabled = false;
         }
     }
+
+    // Shuffle cards.
     void randomizeList(List<GameObject> list)
     {
         for (int i = 0; i < list.Count; i++)
@@ -128,6 +131,8 @@ public class Deck : MonoBehaviour
             list[randomIndex] = temp;
         }
     }
+
+    // Create region cards.
     void populateRegions()
     {
         regionCards = new List<GameObject>();
@@ -174,6 +179,7 @@ public class Deck : MonoBehaviour
         instance.GetComponent<Challenger>().setParent(instance.GetComponent<RegionCard>());
         regionCards.Add(instance);
     }
+    // Create champion cards.
     void populateChampions()
     {
         championCards = new List<GameObject>();
@@ -240,6 +246,7 @@ public class Deck : MonoBehaviour
         instance.GetComponent<Ziggs>().setParent(instance.GetComponent<ChampionCard>());
         championCards.Add(instance);
     }
+    // Create spell cards.
     void populateSpells()
     {
         spellCards = new List<GameObject>();

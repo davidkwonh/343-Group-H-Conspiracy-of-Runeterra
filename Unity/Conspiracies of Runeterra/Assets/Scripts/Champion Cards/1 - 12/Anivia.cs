@@ -18,11 +18,4 @@ public class Anivia : ChampionCard
         alignments.Add("Shuriman");
         alignments.Add("Demacian");
     }
-
-    // Unsure if needed yet.
-    /*// Update is called once per frame
-    void Update()
-    {
-        
-    }*/
 }

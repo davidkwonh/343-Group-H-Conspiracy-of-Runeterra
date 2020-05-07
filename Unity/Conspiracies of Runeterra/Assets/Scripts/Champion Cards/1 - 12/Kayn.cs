@@ -17,12 +17,6 @@ public class Kayn : ChampionCard
         alignments.Add("Ionian");
     }
 
-    /*// Update is called once per frame
-    void Update()
-    {
-        
-    }*/
-
     // Special Ability
     // Treat this champion as Demacian when it attempts to control a Demacian champion.
 }

@@ -17,10 +17,4 @@ public class Gnar : ChampionCard
         alignments.Add("Freljordian");
         alignments.Add("Yordle");
     }
-
-    /*// Update is called once per frame
-    void Update()
-    {
-        
-    }*/
 }

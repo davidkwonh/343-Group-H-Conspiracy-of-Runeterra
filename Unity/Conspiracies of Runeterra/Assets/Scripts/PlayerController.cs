@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     // Static variable to allow other objects to interact with this one.
     public static PlayerController playerControl = null;
 
-    //
+    // Public Variables
     public GameObject camera;
     public GameObject player;
     public List<GameObject> myPlayers;
@@ -20,9 +20,8 @@ public class PlayerController : MonoBehaviour
     GameObject nextPlayer;
     bool activeTurn = false;
     bool rotated = false;
-    
 
-    //
+    // Create and enforce singleton.
     private void Awake()
     {
         if (playerControl == null)
@@ -31,11 +30,6 @@ public class PlayerController : MonoBehaviour
             Destroy(gameObject);
 
         populatePlayers();
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
     // Update is called once per frame
@@ -85,7 +79,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //
+    // Create player objects.
     private void populatePlayers()
     {
         myPlayers = new List<GameObject>();
@@ -97,6 +91,7 @@ public class PlayerController : MonoBehaviour
         instance = Instantiate(player, new Vector3(0, 20, 0), Quaternion.Euler(180,0,0)) as GameObject;
         myPlayers.Add(instance);
     }
+    // Roll dice to determine first player.
     public void rollForFirst()
     {
         int randomIndex = Random.Range(0, myPlayers.Count);
@@ -109,6 +104,7 @@ public class PlayerController : MonoBehaviour
             rotated = true;
         } 
     }
+    // Player turn.
     public IEnumerator sequenceOfPlay()
     {
         activeTurn = true;
@@ -148,7 +144,7 @@ public class PlayerController : MonoBehaviour
         activeTurn = false;
     }
 
-    //
+    // End players turn.
     private void endTurn()
     {
         // Check if anyone won.
@@ -164,12 +160,14 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(sequenceOfPlay());
     }
 
+    // Pass card to player.
     public void attackToControl(GameObject card)
     {
         addingGold = true;
         StartCoroutine(currentPlayer.GetComponent<Player>().attackToControl(card));
     }
 
+    // End game.
     private void endGame(int player)
     {
         StopAllCoroutines();
